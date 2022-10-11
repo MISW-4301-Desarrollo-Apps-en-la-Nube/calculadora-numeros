@@ -8,13 +8,15 @@ app = Flask(__name__)
 
 @app.route('/suma',methods = ['POST'])
 def Suma():
-    number1, numero2, message = "number_1", "number_2", ""
+    numero1 = "number_1",
+    numero2 =  "number_2"
+    message = ""
     user_name = os.getenv("user_name")
     messageWithUserName, messageWithOutUserName = user_name + " la " + message , "La " + message  
 
     if request.method == 'POST':
 
-        if not number1 or not numero2:
+        if not numero1 or not numero2:
             return {"message": "Indique dos numeros para ser sumados"}, 404
         
         numero1, numero2 = request.json["numero_1"], request.json["numero_2"]
