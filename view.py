@@ -1,4 +1,5 @@
 
+from email import message
 from flask import Flask
 from flask import request
 import os
@@ -12,18 +13,26 @@ def Suma():
     numero2 =  "number_2"
     message = ""
     user_name = os.getenv("user_name")
-    messageWithUserName, messageWithOutUserName = user_name + " la " + message , "La " + message  
+    write_result = os.getenv("write_result")
 
     if request.method == 'POST':
 
         if not numero1 or not numero2:
-            return {"message": "Indique dos numeros para ser sumados"}, 404
+            return {"message": EscribirResultado(write_result, "Indique dos numeros para ser sumados", user_name,None,None)}, 404
         
         numero1, numero2 = request.json["numero_1"], request.json["numero_2"]
         message = f"suma de los dos numeros es: {numero1 + numero2}" 
-        message = messageWithUserName + " la " + message if user_name else "La " + messageWithOutUserName 
+        message = user_name + " la " + message if user_name else "La " + message  
 
-        return {"message": message}, 200
+        return {"message": EscribirResultado(write_result, message, user_name, numero1, numero2)}, 200
+
+def EscribirResultado(write, message, user_name ,a ,b):
+    if not write or not a and not b:
+        return message
+    f = open("resultado.txt", "w")
+    f.write(f"Hola {user_name}! Al sumar {a} y {b} se obtiene como resultado {a+b} ")
+    f.close()
+    return message
 
 
 if __name__ == "__main__":

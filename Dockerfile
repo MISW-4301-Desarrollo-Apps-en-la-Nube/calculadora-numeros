@@ -16,6 +16,10 @@ COPY . /app
 # Agregar variable de entorno con el nombre del estudiante
 ENV user_name Estudiante
 
+# Variable de entorno para escribir en txt dentro de la contenedora el resultado
+# Por defecto esta en false (No escribe txt en la contenedora)
+ENV write_result false
+
 # Configurar el contenedor para correr en una manera ejectuble
 ENTRYPOINT [ "python" ]
 
