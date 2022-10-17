@@ -11,9 +11,7 @@ app = Flask(__name__)
 def Suma():
     message = ""
     user_name = os.getenv("user_name")
-    write_result = os.getenv("write_result")
-    print(type(write_result))
-
+    
     if request.method == 'POST':
         try:
             numero1, numero2 = request.json["num_1"], request.json["num_2"]
