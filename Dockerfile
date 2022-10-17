@@ -18,7 +18,7 @@ ENV user_name Estudiante
 
 # Variable de entorno para escribir en txt dentro de la contenedora el resultado
 # Por defecto esta en false (No escribe txt en la contenedora)
-ENV write_result false
+ENV write_result not_show
 
 # Configurar el contenedor para correr en una manera ejectuble
 ENTRYPOINT [ "python" ]

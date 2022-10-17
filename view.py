@@ -9,25 +9,24 @@ app = Flask(__name__)
 
 @app.route('/suma',methods = ['POST'])
 def Suma():
-    numero1 = "number_1",
-    numero2 =  "number_2"
     message = ""
     user_name = os.getenv("user_name")
     write_result = os.getenv("write_result")
+    print(type(write_result))
 
     if request.method == 'POST':
-
-        if not numero1 or not numero2:
-            return {"message": EscribirResultado(write_result, "Indique dos numeros para ser sumados", user_name,None,None)}, 404
+        try:
+            numero1, numero2 = request.json["num_1"], request.json["num_2"]
+        except:
+            return {"message": EscribirResultado("Indique dos números para ser sumados", user_name,None,None)}, 404
         
-        numero1, numero2 = request.json["numero_1"], request.json["numero_2"]
-        message = f"suma de los dos numeros es: {numero1 + numero2}" 
+        message = f"suma de los dos números es: {numero1 + numero2}" 
         message = user_name + " la " + message if user_name else "La " + message  
 
-        return {"message": EscribirResultado(write_result, message, user_name, numero1, numero2)}, 200
+        return {"message": EscribirResultado(message, user_name, numero1, numero2)}, 200
 
-def EscribirResultado(write, message, user_name ,a ,b):
-    if not write or not a and not b:
+def EscribirResultado(message, user_name ,a ,b):
+    if os.getenv("write_result") == "not_show" or not a or not b:
         return message
     f = open("resultado.txt", "w")
     f.write(f"Hola {user_name}! Al sumar {a} y {b} se obtiene como resultado {a+b} ")
