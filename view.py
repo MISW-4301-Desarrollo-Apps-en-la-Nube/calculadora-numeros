@@ -21,7 +21,7 @@ def Suma():
         message = f"suma de los dos números es: {numero1 + numero2}" 
         message = user_name + " la " + message if user_name else "La " + message  
 
-        return {"message": EscribirResultado(message, user_name, numero1, numero2)}, 200
+        return {"message": EscribirResultado(message, user_name, numero1, numero2), "result": numero1 + numero2}, 200
 
 def EscribirResultado(message, user_name ,a ,b):
     if os.getenv("write_result") == "not_show" or not a or not b:
