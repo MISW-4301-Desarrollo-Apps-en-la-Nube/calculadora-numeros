@@ -26,7 +26,7 @@ def Suma():
 def EscribirResultado(message, user_name ,a ,b):
     if os.getenv("write_result") == "not_show" or not a or not b:
         return message
-    f = open("resultado.txt", "w")
+    f = open("./data_file/resultado.txt", "w")
     f.write(f"Hola {user_name}! Al sumar {a} y {b} se obtiene como resultado {a+b} ")
     f.close()
     return message
