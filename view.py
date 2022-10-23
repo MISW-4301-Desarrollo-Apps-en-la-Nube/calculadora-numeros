@@ -16,7 +16,7 @@ def Suma():
         try:
             numero1, numero2 = request.json["num_1"], request.json["num_2"]
         except:
-            return {"message": EscribirResultado("Indique dos números para ser sumados", user_name,None,None)}, 404
+            return {"message": EscribirResultado("Indique dos numeros para ser sumados", user_name,None,None)}, 404
         
         message = f"suma de los dos números es: {numero1 + numero2}" 
         message = user_name + " la " + message if user_name else "La " + message  
