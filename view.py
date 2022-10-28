@@ -18,7 +18,7 @@ def Suma():
         except:
             return {"message": EscribirResultado("Indique dos numeros para ser sumados", user_name,None,None)}, 404
         
-        message = f"suma de los dos números es: {numero1 + numero2}" 
+        message = f"suma de los dos numeros es: {numero1 + numero2}" 
         message = user_name + " la " + message if user_name else "La " + message  
 
         return {"message": EscribirResultado(message, user_name, numero1, numero2), "result": numero1 + numero2}, 200
