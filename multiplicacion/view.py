@@ -23,7 +23,8 @@ def Suma():
         return {"message": EscribirResultado(message, user_name, numero1, numero2), "result": numero1 * numero2}, 200
 
 def EscribirResultado(message, user_name ,a ,b):
-    if os.getenv("write_result") == "not_show" or not a or not b:
+    write = "not_show" if not os.getenv("write_result") else os.getenv("write_result") 
+    if write == "not_show" or not a or not b:
         return message
     f = open("./data_file/resultado.txt", "w")
     f.write(f"Hola {user_name}! Al multiplicar {a} y {b} se obtiene como resultado {a+b} ")
