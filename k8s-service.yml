@@ -44,7 +44,7 @@ spec:
       containers:
       
         - name: calculadora-numeros
-          image: us-central1-docker.pkg.dev/calculadora-cloud-native-2022/uniandes-misw-native-calculadora-app/calculadora-numeros:1.0
+          image: <IMAGE>
           ports:
             - containerPort: 4000
           
