@@ -1,0 +1,74 @@
+Name:         calculadora-numeros-suma-5444d7bb5-lf2rj
+Namespace:    default
+Priority:     0
+Node:         gk3-uniandes-misw-cloud--default-pool-a0bbb0ae-bzzk/192.168.32.6
+Start Time:   Sat, 12 Nov 2022 12:13:29 -0500
+Labels:       app=calculadora-numeros-suma
+              pod-template-hash=5444d7bb5
+Annotations:  seccomp.security.alpha.kubernetes.io/pod: runtime/default
+Status:       Running
+IP:           192.168.64.131
+IPs:
+  IP:           192.168.64.131
+Controlled By:  ReplicaSet/calculadora-numeros-suma-5444d7bb5
+Containers:
+  calculadora-numeros-suma:
+    Container ID:   containerd://8a6bf6139e43bf74c3f037fd45b3035c4c91d8f791c158ef7ae6cff78750fc15
+    Image:          us-central1-docker.pkg.dev/calculadora-cloud-native-2022/uniandes-misw-native-calculadora-app/calculadora-numeros:1.0
+    Image ID:       us-central1-docker.pkg.dev/calculadora-cloud-native-2022/uniandes-misw-native-calculadora-app/calculadora-numeros@sha256:b5838e5e29f91ba59d62c9aabef8b35055d538baa9c9275b344df8b0f1313a08
+    Port:           4000/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       CrashLoopBackOff
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    1
+      Started:      Sat, 12 Nov 2022 12:24:44 -0500
+      Finished:     Sat, 12 Nov 2022 12:24:44 -0500
+    Ready:          False
+    Restart Count:  7
+    Limits:
+      cpu:                500m
+      ephemeral-storage:  1Gi
+      memory:             2Gi
+    Requests:
+      cpu:                500m
+      ephemeral-storage:  1Gi
+      memory:             2Gi
+    Environment:          <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-l64b9 (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             False 
+  ContainersReady   False 
+  PodScheduled      True 
+Volumes:
+  kube-api-access-l64b9:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Guaranteed
+Node-Selectors:              <none>
+Tolerations:                 kubernetes.io/arch=amd64:NoSchedule
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason            Age                  From                                   Message
+  ----     ------            ----                 ----                                   -------
+  Normal   TriggeredScaleUp  13m                  cluster-autoscaler                     pod triggered scale-up: [{https://www.googleapis.com/compute/v1/projects/calculadora-cloud-native-2022/zones/us-central1-a/instanceGroups/gk3-uniandes-misw-cloud--default-pool-a0bbb0ae-grp 1->2 (max: 1000)}]
+  Warning  FailedScheduling  13m (x3 over 13m)    gke.io/optimize-utilization-scheduler  0/2 nodes are available: 2 Insufficient cpu, 2 Insufficient memory.
+  Warning  FailedScheduling  12m                  gke.io/optimize-utilization-scheduler  0/3 nodes are available: 1 node(s) had taint {node.kubernetes.io/not-ready: }, that the pod didn't tolerate, 2 Insufficient cpu, 2 Insufficient memory.
+  Normal   Scheduled         11m                  gke.io/optimize-utilization-scheduler  Successfully assigned default/calculadora-numeros-suma-5444d7bb5-lf2rj to gk3-uniandes-misw-cloud--default-pool-a0bbb0ae-bzzk
+  Normal   Pulled            11m                  kubelet                                Successfully pulled image "us-central1-docker.pkg.dev/calculadora-cloud-native-2022/uniandes-misw-native-calculadora-app/calculadora-numeros:1.0" in 5.993561719s
+  Normal   Pulled            11m                  kubelet                                Successfully pulled image "us-central1-docker.pkg.dev/calculadora-cloud-native-2022/uniandes-misw-native-calculadora-app/calculadora-numeros:1.0" in 183.612339ms
+  Normal   Pulled            11m                  kubelet                                Successfully pulled image "us-central1-docker.pkg.dev/calculadora-cloud-native-2022/uniandes-misw-native-calculadora-app/calculadora-numeros:1.0" in 157.96264ms
+  Normal   Created           10m (x4 over 11m)    kubelet                                Created container calculadora-numeros-suma
+  Normal   Pulled            10m                  kubelet                                Successfully pulled image "us-central1-docker.pkg.dev/calculadora-cloud-native-2022/uniandes-misw-native-calculadora-app/calculadora-numeros:1.0" in 310.919437ms
+  Normal   Started           10m (x4 over 11m)    kubelet                                Started container calculadora-numeros-suma
+  Normal   Pulling           9m56s (x5 over 11m)  kubelet                                Pulling image "us-central1-docker.pkg.dev/calculadora-cloud-native-2022/uniandes-misw-native-calculadora-app/calculadora-numeros:1.0"
+  Normal   Pulled            9m56s                kubelet                                Successfully pulled image "us-central1-docker.pkg.dev/calculadora-cloud-native-2022/uniandes-misw-native-calculadora-app/calculadora-numeros:1.0" in 273.413715ms
+  Warning  BackOff           91s (x46 over 11m)   kubelet                                Back-off restarting failed container
