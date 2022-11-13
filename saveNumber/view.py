@@ -7,7 +7,7 @@ import os
 
 def create_app(config_name):
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('PG_DATABASE') if environ.get('PG_DATABASE') != None else 'sqlite:///conversion_system.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] =  os.getenv('SQLALCHEMY_DATABASE_URI') if environ.get('SQLALCHEMY_DATABASE_URI') != 'default' else 'sqlite:///conversion_system.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['PROPAGATE_EXCEPTION'] = True
     return app

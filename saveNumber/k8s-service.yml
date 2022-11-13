@@ -44,12 +44,21 @@ spec:
       containers:
       
         - name: calculadora-numeros
-          image: <IMAGE>
+          image: us-central1-docker.pkg.dev/calculadora-cloud-native-2022/uniandes-misw-native-calculadora-app/calculadora-numeros:db-save-1.0
           ports:
             - containerPort: 4000
-          
+          env:
+            - name: "SQLALCHEMY_DATABASE_URI"
+              valueFrom:
+                secretKeyRef:
+                  name: appsecrets 
+                  key: uri
           # Realizar pull siempre a la imagen
           imagePullPolicy: Always
+      volumes:
+        - name: appsecrets-volume
+          secret:
+            secretName: appsecrets
 
 # Vamos a especificar el balanceador de carga en este mismo archivo
 # para ello vamos a crear otro documento separado, esto se hace con el operador "---"

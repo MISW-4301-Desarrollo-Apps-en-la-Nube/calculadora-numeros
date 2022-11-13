@@ -19,6 +19,8 @@ ENV user_name Estudiante
 # Por defecto esta en false (No escribe txt en la contenedora)
 ENV write_result not_show
 
+ENV SQLALCHEMY_DATABASE_URI default
+
 # Configurar el contenedor para correr en una manera ejectuble
 ENTRYPOINT [ "python" ]
 
