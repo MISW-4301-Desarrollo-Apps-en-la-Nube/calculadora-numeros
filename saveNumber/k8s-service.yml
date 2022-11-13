@@ -42,7 +42,6 @@ spec:
       # image: Nombre de la imagen, por defecto buscara en Docker Hub o en el repositorio privado
       #        configurado en K8s
       containers:
-      
         - name: calculadora-numeros
           image: us-central1-docker.pkg.dev/calculadora-cloud-native-2022/uniandes-misw-native-calculadora-app/calculadora-numeros:db-save-1.0
           ports:
