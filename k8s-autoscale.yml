@@ -9,4 +9,3 @@ spec:
     name: calculadora-numeros
   minReplicas: 1
   maxReplicas: 1
-  targetCPUUtilizationPercentage: 50
