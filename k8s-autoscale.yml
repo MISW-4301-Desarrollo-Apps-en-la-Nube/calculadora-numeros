@@ -7,5 +7,4 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: calculadora-numeros
-  minReplicas: 1
-  maxReplicas: 1
+  replicas: 5
