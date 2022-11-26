@@ -32,6 +32,9 @@ def GetNumber():
     last_record = db.session.query(Number).order_by(Number.id.desc()).first()
     return {"ultimo_valor": last_record.value}
 
+@app.route('/health',methods = ['GET'])
+def Health():
+    return "ok", 200
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 4000))
