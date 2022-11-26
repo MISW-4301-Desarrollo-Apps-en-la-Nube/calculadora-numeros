@@ -27,7 +27,7 @@ spec:
   # tecnicas de actualización de despliegues como Rolling Update y Blue/Green
   strategy:
     rollingUpdate:
-      maxSurge: 1
+      maxSurge: 2
       maxUnavailable: 1
     type: RollingUpdate        
   # En esta sección definimos el contenido del pod y declaramos los contenedores
@@ -43,7 +43,14 @@ spec:
       #        configurado en K8s
       containers:
         - name: calculadora-numeros
-          image: <IMAGE> 
+          image: us-central1-docker.pkg.dev/calculadora-cloud-native-2022/uniandes-misw-native-calculadora-app/calculadora-numeros:2.0
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
           ports:
             - containerPort: 4000
           env:
