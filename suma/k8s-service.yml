@@ -25,10 +25,17 @@ spec:
   # En este elemento definimos la politica de actualizacion del despliegue
   # No esta al alcance de este laboratorio, pero invitamos al lector a consultar mas sobre
   # tecnicas de actualización de despliegues como Rolling Update y Blue/Green
-  strategy:
+    strategy:
     rollingUpdate:
       maxSurge: 2
       maxUnavailable: 1
+    type: RollingUpdate 
+  
+  
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 20%
     type: RollingUpdate        
   # En esta sección definimos el contenido del pod y declaramos los contenedores
   template:
