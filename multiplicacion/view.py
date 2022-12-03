@@ -31,6 +31,9 @@ def EscribirResultado(message, user_name ,a ,b):
     f.close()
     return message
 
+@app.route('/health',methods = ['GET'])
+def Health():
+    return "ok", 200
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 4000))
