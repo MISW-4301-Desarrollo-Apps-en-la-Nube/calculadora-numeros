@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/exponencial',methods = ['POST'])
 def Exponencial():
-    multiplicacion_url = os.getenv("multiplicacion_ms")
+    multiplicacion_url = os.getenv("MULTIPLICACION_MS")
     
     if request.method == 'POST':
         try:
