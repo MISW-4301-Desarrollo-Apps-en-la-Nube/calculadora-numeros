@@ -1,27 +1,30 @@
-
 from flask import Flask
 from flask import request
 import os
+import requests
 
 app = Flask(__name__)
 
-
 @app.route('/exponencial',methods = ['POST'])
-def Suma():
-    message = ""
-    user_name = os.getenv("user_name")
+def Exponencial():
+    multiplicacion_url = os.getenv("multiplicacion_ms")
     
     if request.method == 'POST':
         try:
-            numero1, numero2 = request.json["num_1"], request.json["num_2"]
+            numero , potencia = request.json["numero"], request.json["potencia"]
         except:
-            return {"message": EscribirResultado("Indique dos numeros para ser sumados", user_name,None,None)}, 404
-        
-        message = f"suma de los dos numeros es: {numero1 + numero2}" 
-        message = user_name + " la " + message if user_name else "La " + message  
+            return {"message": ""}
 
-        return {"message": EscribirResultado(message, user_name, numero1, numero2), "result": numero1 + numero2}, 200
+        resultado = numero
+        for _ in range(potencia-1):
+            obj = {'num_1': f'{resultado}', 'num_2': f'{numero}'}
+            req = requests.post(multiplicacion_url + '/multiplicar', json = obj)
+            resultado = req.json()["result"]
 
+        return {"message": f"Elevando {numero} a la {potencia} se obtiene {resultado}" , "result": resultado}, 200
+            
+
+""
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 4000))
+    port = int(os.environ.get('PORT', 6000))
     app.run(debug=True, host='0.0.0.0', port=port)

@@ -13,7 +13,7 @@ def Suma():
     
     if request.method == 'POST':
         try:
-            numero1, numero2 = request.json["num_1"], request.json["num_2"]
+            numero1, numero2 = int(request.json["num_1"]), int(request.json["num_2"])
         except:
             return {"message": EscribirResultado("Indique dos numeros para ser multiplicados", user_name,None,None)}, 404
         
