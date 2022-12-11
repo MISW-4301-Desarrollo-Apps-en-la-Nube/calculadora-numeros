@@ -20,7 +20,7 @@ ENV user_name Estudiante
 # Por defecto esta en false (No escribe txt en la contenedora)
 ENV write_result not_show
 
-ENV MULTIPLICACION_MS
+ENV MULTIPLICACION_MS localhost:8080
 
 # Configurar el contenedor para correr en una manera ejectuble
 ENTRYPOINT [ "python" ]

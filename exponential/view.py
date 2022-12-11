@@ -24,6 +24,11 @@ def Exponencial():
         return {"message": f"Elevando {numero} a la {potencia} se obtiene {resultado}" , "result": resultado}, 200
             
 
+@app.route('/health',methods = ['GET'])
+def Health():
+    return "ok", 200
+
+
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 6000))
     app.run(debug=True, host='0.0.0.0', port=port)
