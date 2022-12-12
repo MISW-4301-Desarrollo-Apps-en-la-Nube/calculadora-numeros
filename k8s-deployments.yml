@@ -160,7 +160,7 @@ spec:
     spec:
       containers:
         - name: calculadora-numeros-exponencial
-          image: us-central1-docker.pkg.dev/calculadora-cloud-native-2022/uniandes-misw-native-calculadora-app/calculadora-numeros:mult_v0.0.1
+          image: us-central1-docker.pkg.dev/calculadora-cloud-native-2022/uniandes-misw-native-calculadora-app/calculadora-numeros:exp_v0.0.1
           ports:
             - containerPort: 4000
          
@@ -170,6 +170,9 @@ spec:
                   secretKeyRef:
                     name: appsecrets 
                     key: uri
+
+              - name: "MULTIPLICACION_MS"
+                value: http://calculadora-numeros-multiplicacion
             # Realizar pull siempre a la imagen
           imagePullPolicy: Always
       volumes:
@@ -180,7 +183,7 @@ spec:
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
-  name: calculadora-numeros-multiplicacion-config
+  name: calculadora-numeros-exponencial-config
 spec:
   healthCheck:
     checkIntervalSec: 30
@@ -191,18 +194,18 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: calculadora-numeros-multiplicacion
+  name: calculadora-numeros-exponencial
   annotations:
-    cloud.google.com/backend-config: '{"default": "calculadora-numeros-multiplicacion-config"}'
+    cloud.google.com/backend-config: '{"default": "calculadora-numeros-exponencial-config"}'
 spec:
   type: NodePort
   selector:
-    app: calculadora-numeros-multiplicacion
+    app: calculadora-numeros-exponencial
   ports:
     - protocol: TCP
       port: 80
       targetPort: 4000
-      nodePort: 31017
+      nodePort: 31018
 
 
 # INGRESS
@@ -210,9 +213,9 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: gateway-ingress
+  name: gateway-ingress-1
   labels:
-    name: gateway-ingress
+    name: gateway-ingress-1
 spec:
   rules:
   - http:
@@ -229,5 +232,13 @@ spec:
         backend:
           service:
             name: calculadora-numeros-multiplicacion
+            port: 
+              number: 80
+
+      - pathType: Prefix
+        path: /exponencial
+        backend:
+          service:
+            name: calculadora-numeros-exponencial
             port: 
               number: 80
