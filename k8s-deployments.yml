@@ -48,7 +48,7 @@ spec:
     checkIntervalSec: 30
     port: 4000
     type: HTTP
-    requestPath: /health/
+    requestPath: /health
 ---
 kind: Service
 apiVersion: v1
@@ -110,13 +110,13 @@ spec:
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
-  name: pedido-backend-config
+  name: calculadora-numeros-multiplicacion-config
 spec:
   healthCheck:
     checkIntervalSec: 30
     port: 4000
     type: HTTP
-    requestPath: /health/
+    requestPath: /health
 ---
 kind: Service
 apiVersion: v1
