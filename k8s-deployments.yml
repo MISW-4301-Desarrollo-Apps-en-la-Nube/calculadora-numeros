@@ -162,7 +162,7 @@ spec:
         - name: calculadora-numeros-exponencial
           image: us-central1-docker.pkg.dev/calculadora-cloud-native-2022/uniandes-misw-native-calculadora-app/calculadora-numeros:exp_v0.0.1
           ports:
-            - containerPort: 4000
+            - containerPort: 6000
          
           env:
               - name: "SQLALCHEMY_DATABASE_URI"
@@ -171,7 +171,7 @@ spec:
                     name: appsecrets 
                     key: uri
 
-              - name: "MULTIPLICACION_MS"
+              - name: MULTIPLICACION_MS
                 value: http://calculadora-numeros-multiplicacion
             # Realizar pull siempre a la imagen
           imagePullPolicy: Always
@@ -187,7 +187,7 @@ metadata:
 spec:
   healthCheck:
     checkIntervalSec: 30
-    port: 4000
+    port: 6000
     type: HTTP
     requestPath: /health
 ---
@@ -204,7 +204,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 4000
+      targetPort: 6000
       nodePort: 31018
 
 
@@ -213,9 +213,9 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: gateway-ingress-1
+  name: gateway-ingress
   labels:
-    name: gateway-ingress-1
+    name: gateway-ingress
 spec:
   rules:
   - http:
